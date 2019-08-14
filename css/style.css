@@ -111,7 +111,7 @@ header {
 }
 
 pre { 
-  font-size: 2.25vmin;
+  font-size: 2.75vw;
   text-align: center;
 }
 
@@ -126,6 +126,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 footer p,
