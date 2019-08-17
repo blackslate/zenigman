@@ -1,6 +1,17 @@
 :root {
+  --footer-color: #002;
+  --footer-light: #004;
+  --footer-dark: #001;
   --footer-height: 5em;
+
+  --link-dim: #99c;
+  --link-color: #fff;
+  --link-visited: #ccf;
+
   --header-height: calc(100% - var(--footer-height));
+  --font-size: 2.7vmax;
+  --tr-size: calc(var(--font-size) * 1);
+  --flag-size: 2em;
 }
 
 body, html, main {
@@ -29,9 +40,15 @@ div.active {
   display: block;
 }
 
+h1, p, dd {
+  position: relative;
+}
+
 h1 {
   font-size: 1.8em;
-  text-align: center
+  text-align: center;
+  margin: 0;
+  padding: var(--font-size);
 }
 
 p {
@@ -110,7 +127,7 @@ header {
   overflow-y: auto;
 }
 
-pre { 
+pre {
   font-size: 2.75vw;
   text-align: center;
 }
@@ -137,14 +154,15 @@ footer a {
 a {
   display: block;
   font-weight: bold;
-  color: #ccc;
+  color: var(--link-dim);
+  margin: 0 2em;
 }
 
 footer.full {
-  background-color: #020;
-  border-color: #030;
-  border-bottom-color: #010;
-  border-right-color: #010;
+  background-color: var(--footer-color);
+  border-color: var(--footer-light);
+  border-bottom-color: var(--footer-dark);
+  border-right-color: var(--footer-dark);
 }
 
 footer.end p {
@@ -158,9 +176,112 @@ footer.end a {
 }
 
 footer.full a {
-  color: #fff;
+  color: var(--link-color);
 }
 
 footer a:visited {
+  color: var(--link-visited);
+}
+
+aside {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: var(--flag-size);
+  height: var(--footer-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+aside img {
+  width: var(--flag-size);
+}
+
+aside input {
+  opacity: 0;
+  position: fixed;
+  top: -999;
+}
+
+aside input + label {
+  opacity: 0.333;
+}
+
+aside input:checked + label {
+  opacity: 1;
+}
+
+jx-tr {
+  position: absolute;
+  top: 0;
+  left: -1em;
+  width: var(--tr-size);
+  height: var(--tr-size);
+  background: url("../img/en-vo.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+}
+
+
+jx-tr[checked] {
+  background: url("../img/ru-v2.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+h1 jx-tr {
+  left: 0;
+}
+
+
+jx-tr:focus {
+  outline: unset;
+}
+
+span.ru {
+  display: none;
+}
+
+jx-tr[checked] ~ span{
   color: #999;
+}
+
+jx-tr[checked] ~ span.ru {
+  display: inline;
+}
+
+jx-tr[checked] ~ span.en {
+  display: none;
+}
+
+html[lang=ru] span.en {
+  display: none;
+}
+
+html[lang=ru] span.ru {
+  display: inline;
+}
+
+html[lang=ru]  jx-tr[checked] ~ span.ru {
+  display: none;
+}
+
+html[lang=ru] jx-tr[checked] ~ span.en {
+  display: inline;
+}
+
+html[lang=ru] jx-tr {
+  background: url("../img/ru-vo.png");
+  background-size: contain;
+}
+
+html[lang=ru] jx-tr[checked] {
+  background: url("../img/en-v2.png");
+  background-size: contain;
 }
